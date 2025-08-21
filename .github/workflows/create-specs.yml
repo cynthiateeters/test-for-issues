@@ -1,0 +1,61 @@
+name: Create Specification Issues
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  create-specs:
+    if: github.event.issue.title == 'Initialize Specs'
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Create Core Spec 1 - Professional Tooling
+        uses: JasonEtco/create-an-issue@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          filename: .github/issue-specs/01-core-tooling.md
+          
+      - name: Create Core Spec 2 - HTML Structure
+        uses: JasonEtco/create-an-issue@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          filename: .github/issue-specs/02-core-html.md
+          
+      - name: Create Core Spec 3 - CSS Implementation
+        uses: JasonEtco/create-an-issue@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          filename: .github/issue-specs/03-core-css.md
+          
+      - name: Create Core Spec 4 - Documentation
+        uses: JasonEtco/create-an-issue@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          filename: .github/issue-specs/04-core-documentation.md
+          
+      - name: Create Advanced Spec 1 - Typography
+        uses: JasonEtco/create-an-issue@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          filename: .github/issue-specs/05-advanced-typography.md
+          
+      - name: Create Advanced Spec 2 - Performance
+        uses: JasonEtco/create-an-issue@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          filename: .github/issue-specs/06-advanced-performance.md
+          
+      - name: Close trigger issue
+        uses: peter-evans/close-issue@v3
+        with:
+          issue-number: ${{ github.event.issue.number }}
+          comment: "✅ All specification issues have been created! Check your Issues tab to see your requirements."
