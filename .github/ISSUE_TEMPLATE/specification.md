@@ -1,20 +1,12 @@
 ---
-name: Specification
-about: Suggest an idea for this project
-title: ''
-labels: ''
+name: Initialize Specifications
+about: Create all specification issues for this assignment
+title: Initialize Specs
+labels: setup
 assignees: ''
 
 ---
 
-**Is your feature request related to a problem? Please describe.**
-A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
+Click "Submit new issue" to automatically create all specification issues for the Week 1 Poetry Interpretation assignment.
 
-**Describe the solution you'd like**
-A clear and concise description of what you want to happen.
-
-**Describe alternatives you've considered**
-A clear and concise description of any alternative solutions or features you've considered.
-
-**Additional context**
-Add any other context or screenshots about the feature request here.
+This issue will close automatically once all specs are created.
