@@ -1,7 +1,6 @@
 ---
 title: "Core Spec #3: CSS Typography & Layout"
 labels: required, css, week-01, status:todo
-assignees: ${{ github.actor }}
 ---
 
 ## 🎨 CSS Implementation

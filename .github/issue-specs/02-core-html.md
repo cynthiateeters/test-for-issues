@@ -1,7 +1,6 @@
 ---
 title: "Core Spec #2: Semantic HTML Structure"
 labels: required, html, week-01, status:todo
-assignees: ${{ github.actor }}
 ---
 
 ## 📄 HTML Structure & Semantics

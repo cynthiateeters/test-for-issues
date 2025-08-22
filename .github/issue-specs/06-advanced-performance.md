@@ -1,7 +1,6 @@
 ---
 title: "Advanced Spec #2: Performance Optimization"
 labels: stretch, performance, week-01, status:todo
-assignees: ${{ github.actor }}
 ---
 
 ## ⚡ Performance & Best Practices

@@ -1,7 +1,6 @@
 ---
 title: "Core Spec #1: Professional Tooling Setup"
 labels: required, setup, week-01, status:todo
-assignees: ${{ github.actor }}
 ---
 
 ## 📋 Professional Development Environment

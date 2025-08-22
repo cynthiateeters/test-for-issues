@@ -1,7 +1,6 @@
 ---
 title: "Core Spec #4: Documentation & Git Practice"
 labels: required, documentation, week-01, status:todo
-assignees: ${{ github.actor }}
 ---
 
 ## 📚 Documentation & Version Control

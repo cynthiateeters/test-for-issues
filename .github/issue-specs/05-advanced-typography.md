@@ -1,7 +1,6 @@
 ---
 title: "Advanced Spec #1: Exceptional Typography"
 labels: stretch, design, week-01, status:todo
-assignees: ${{ github.actor }}
 ---
 
 ## ✨ Advanced Typography & Design
