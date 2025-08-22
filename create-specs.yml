@@ -1,0 +1,68 @@
+name: Create Specification Issues
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  discover-specs:
+    if: github.event.issue.title == 'Initialize Specs'
+    runs-on: ubuntu-latest
+    outputs:
+      specs: ${{ steps.set-matrix.outputs.specs }}
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Discover specification files
+        id: set-matrix
+        run: |
+          # Find all .md files in issue-specs directory
+          FILES=$(find .github/issue-specs -name "*.md" -type f | sort)
+          
+          # Convert to JSON array for matrix
+          JSON_ARRAY="["
+          FIRST=true
+          for file in $FILES; do
+            if [ "$FIRST" = false ]; then
+              JSON_ARRAY+=","
+            fi
+            # Extract just the filename
+            FILENAME=$(basename "$file")
+            JSON_ARRAY+="\"$file\""
+            FIRST=false
+          done
+          JSON_ARRAY+="]"
+          
+          echo "specs=$JSON_ARRAY" >> $GITHUB_OUTPUT
+          echo "Found specification files: $JSON_ARRAY"
+
+  create-issues:
+    needs: discover-specs
+    if: needs.discover-specs.outputs.specs != '[]'
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    strategy:
+      matrix:
+        spec-file: ${{ fromJson(needs.discover-specs.outputs.specs) }}
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Create issue from ${{ matrix.spec-file }}
+        uses: JasonEtco/create-an-issue@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          filename: ${{ matrix.spec-file }}
+
+  close-trigger:
+    needs: create-issues
+    if: always()
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - name: Close trigger issue
+        uses: peter-evans/close-issue@v3
+        with:
+          issue-number: ${{ github.event.issue.number }}
+          comment: "✅ All specification issues have been created! Check your Issues tab to see your requirements."
